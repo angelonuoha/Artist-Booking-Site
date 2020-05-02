@@ -78,8 +78,8 @@ class Artist(db.Model):
       return f'<Artist {self.id}, name: {self.name}>'
 # TODO Implement Show and Artist models, and complete all model relationships and properties, as a database migration.
 
-class Show(db.Model):
-  __tablename__ = 'Show'
+class Shows(db.Model):
+  __tablename__ = 'Shows'
   id = db.Column(db.Integer, primary_key=True)
   artist_id = db.Column(db.Integer, db.ForeignKey('Artist.id'))
   venue_id = db.Column(db.Integer, db.ForeignKey('Venue.id'))
