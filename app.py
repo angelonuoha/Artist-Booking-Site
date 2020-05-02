@@ -45,8 +45,8 @@ class Venue(db.Model):
     website = db.Column(db.String())
     seeking_talent = db.Column(db.Boolean)
     seeking_description = db.Column(db.String())
-    past_shows = db.relationship('Show', backref="past_venue_shows")
-    upcoming_shows = db.relationship('Show', backref="upcoming_venue_shows")
+    past_shows = db.relationship('Shows', backref="past_venue_shows")
+    upcoming_shows = db.relationship('Shows', backref="upcoming_venue_shows")
     past_shows_count = db.Column(db.Integer)
     upcoming_shows_count = db.Column(db.Integer)
 
@@ -69,8 +69,8 @@ class Artist(db.Model):
     website = db.Column(db.String())
     seeking_venue = db.Column(db.Boolean)
     seeking_description = db.Column(db.String())
-    past_shows = db.relationship('Show', backref="past_artist_shows")
-    upcoming_shows = db.relationship('Show', backref="upcoming_artist_shows")
+    past_shows = db.relationship('Shows', backref="past_artist_shows")
+    upcoming_shows = db.relationship('Shows', backref="upcoming_artist_shows")
     past_shows_count = db.Column(db.Integer)
     upcoming_shows_count = db.Column(db.Integer)
 
