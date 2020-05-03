@@ -214,8 +214,8 @@ def show_venue(venue_id):
   data['seeking_talent'] = venue.seeking_talent
   data['seeking_description'] = venue.seeking_description
   data['image_link'] = venue.image_link
-  data['past_shows'] = get_shows_info(venue.past_venue_shows)
-  data['upcoming_shows'] = get_shows_info(venue.upcoming_venue_shows)
+  data['past_shows'] = get_shows_info(venue.past_shows)
+  data['upcoming_shows'] = get_shows_info(venue.upcoming_shows)
   data['past_shows_count'] = venue.past_shows_count
   data['upcoming_shows_count'] = venue.upcoming_shows_count
 
@@ -346,8 +346,8 @@ def show_artist(artist_id):
   data['seeking_venue'] = artist.seeking_venue
   data['seeking_description'] = artist.seeking_description
   data['image_link'] = artist.image_link
-  data['past_shows'] = get_shows_info(artist.past_artist_shows)
-  data['upcoming_shows'] = get_shows_info(artist.upcoming_artist_shows)
+  data['past_shows'] = get_shows_info(artist.past_shows)
+  data['upcoming_shows'] = get_shows_info(artist.upcoming_shows)
   data['past_shows_count'] = artist.past_shows_count
   data['upcoming_shows_count'] = artist.upcoming_shows_count
 
