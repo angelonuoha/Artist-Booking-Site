@@ -29,7 +29,7 @@ migrate = Migrate(app, db)
 #----------------------------------------------------------------------------#
 
 class Venue(db.Model):
-    __tablename__ = 'Venue'
+    __tablename__ = 'venues'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String())
@@ -45,16 +45,13 @@ class Venue(db.Model):
     website = db.Column(db.String())
     seeking_talent = db.Column(db.Boolean)
     seeking_description = db.Column(db.String())
-    past_shows = db.relationship('Shows', backref="past_venue_shows")
-    upcoming_shows = db.relationship('Shows', backref="upcoming_venue_shows")
-    past_shows_count = db.Column(db.Integer)
-    upcoming_shows_count = db.Column(db.Integer)
+    venue_shows = db.relationship('shows', backref="venue_shows")
 
     def __repr__(self):
       return f'<Venue {self.id}, name: {self.name}, city: {self.city}, state: {self.state}>'
 
 class Artist(db.Model):
-    __tablename__ = 'Artist'
+    __tablename__ = 'artists'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String())
@@ -69,20 +66,17 @@ class Artist(db.Model):
     website = db.Column(db.String())
     seeking_venue = db.Column(db.Boolean)
     seeking_description = db.Column(db.String())
-    past_shows = db.relationship('Shows', backref="past_artist_shows")
-    upcoming_shows = db.relationship('Shows', backref="upcoming_artist_shows")
-    past_shows_count = db.Column(db.Integer)
-    upcoming_shows_count = db.Column(db.Integer)
+    artist_shows = db.relationship('shows', backref="artist_shows")
 
     def __repr__(self):
       return f'<Artist {self.id}, name: {self.name}>'
 # TODO Implement Show and Artist models, and complete all model relationships and properties, as a database migration.
 
 class Shows(db.Model):
-  __tablename__ = 'Shows'
+  __tablename__ = 'shows'
   id = db.Column(db.Integer, primary_key=True)
-  artist_id = db.Column(db.Integer, db.ForeignKey('Artist.id'))
-  venue_id = db.Column(db.Integer, db.ForeignKey('Venue.id'))
+  artist_id = db.Column(db.Integer, db.ForeignKey('artists.id'))
+  venue_id = db.Column(db.Integer, db.ForeignKey('venues.id'))
   time = db.Column(db.String(), nullable=False)
   
   def __repr__(self):
