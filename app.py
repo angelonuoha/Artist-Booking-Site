@@ -213,8 +213,9 @@ def show_venue(venue_id):
   error = False
   try:
     venue = Venue.query.get(venue_id)
-    past_shows = get_past_shows(venue.venue_shows)
-    upcoming_shows = get_upcoming_shows(venue.venue_shows)
+    shows = db.session.query(Shows).join(Venue, venue_id == Shows.venue_id).all()
+    past_shows = get_past_shows(shows)
+    upcoming_shows = get_upcoming_shows(shows)
     data = {}
     data['id'] = venue.id
     data['name'] = venue.name
@@ -340,8 +341,8 @@ def search_artists():
 
 @app.route('/artists/<int:artist_id>')
 def show_artist(artist_id):
-  # shows the venue page with the given venue_id
-  # TODO: replace with real venue data from the venues table, using venue_id
+  # shows the artist page with the given artist_id
+  # TODO: replace with real artist data from the artists table, using artist_id
 
   def get_shows_info(show_arr):
     shows = []
@@ -354,11 +355,13 @@ def show_artist(artist_id):
       show_dict['start_time'] = show.time
       shows.append(show_dict)
     return shows
+
   error = False
   try: 
     artist = Artist.query.get(artist_id)
-    past_shows = get_past_shows(artist.artist_shows)
-    upcoming_shows = get_upcoming_shows(artist.artist_shows)
+    shows = db.session.query(Shows).join(Artist, artist_id == Shows.artist_id).all()
+    past_shows = get_past_shows(shows)
+    upcoming_shows = get_upcoming_shows(shows)
     data = {}
     data['id'] = artist.id
     data['name'] = artist.name
