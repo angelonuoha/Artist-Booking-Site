@@ -529,7 +529,7 @@ def create_show_submission():
   # called to create new shows in the db, upon submitting new show listing form
   # TODO: insert form data as a new Show record in the db, instead
   error = False
-  show = Shows(name=request.form['artist_id'], venue_id=request.form['venue_id'], city=request.form['start_time'])
+  show = Shows(artist_id=request.form['artist_id'], venue_id=request.form['venue_id'], city=request.form['start_time'])
 
   try:
     db.session.add(show)
